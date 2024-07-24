@@ -26,6 +26,7 @@ pipeline {
 
         stage('Tests') {
             parallel {
+
                 stage('Unit tests') {
                     agent {
                         docker {
@@ -43,7 +44,7 @@ pipeline {
                     always {
                         junit 'jest-results/junit.xml'
                     }
-    }
+                    }
                 }
 
                 stage('E2E') {
@@ -66,8 +67,23 @@ pipeline {
                         junit 'jest-results/junit.xml'
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                     }
+                    }
                 }
+            }
+        }
+
+        stage('Deploy') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
                 }
+            }
+            steps {
+                sh '''
+                    npm install netlify-cli -g
+                    netlify --version
+                '''
             }
         } 
     }
