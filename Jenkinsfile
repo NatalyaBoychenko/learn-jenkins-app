@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        /*
+        
         stage('Build') {
             agent {
                 docker {
@@ -15,13 +15,14 @@ pipeline {
                     ls -la
                     node --version
                     npm --version
+                    # add all necessary dependencies to run project and build project
                     npm ci
                     npm run build
                     ls -la
                 '''
             }
         }
-        */
+        
 
         stage('Tests') {
             parallel {
