@@ -8,13 +8,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Docker') {
-            steps {
-                // here we go to Dockerfile and run it. we put new name to our image that we create in Dockerfile
-                sh('docker build -t my-playwright .')
-            }
-        }
         
         stage('Build') {
             agent {
