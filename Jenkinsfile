@@ -122,9 +122,11 @@ pipeline {
                     environment {
                         CI_ENVIRONMENT_URL = 'SOME_VAR'
                     }
+                    /*
+                    if we don't use Docker file we must add the full path to the current file: node_modules/.bin/netlify --version
+                    */
                     steps {
                         sh '''
-                        // if we don't use Docker file we must add the full path to the current file: node_modules/.bin/netlify --version
                         netlify --version
                         echo "Deploying to staging Site ID: $NETLIFY_SITE_ID"
                         netlify status
@@ -183,7 +185,7 @@ pipeline {
                     }
                     steps {
                         sh '''
-                        nnetlify --version
+                        n etlify --version
                         echo "Deploying to production Site ID: $NETLIFY_SITE_ID"
                         netlify status
                         netlify deploy --dir=build --prod
