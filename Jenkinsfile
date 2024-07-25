@@ -4,6 +4,7 @@ pipeline {
     environment {
         NETLIFY_SITE_ID = '1851c2d5-ea7d-4301-b061-c4bdef3be8b8'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+        REACT_APP_VERSION = "1.0.BUILD_ID"
     }
 
     stages {
@@ -129,13 +130,15 @@ pipeline {
                     }
                 }
 
+         /* 
+         // approval is needed only for contin delivered
          stage('Approval') {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     input message: 'Are u sure u want to deploy?', ok: 'Yes, I\'m sure. Let\'s deploy!'
                 }
             }
-        }     
+        }     */
 
 
      /*   stage('Deploy prod') {
