@@ -65,7 +65,6 @@ pipeline {
 
             steps {
                 sh '''
-                    amazon-linux-extras install docker
                     docker build -t myjenkinsapp .
                 '''
             }
@@ -238,10 +237,10 @@ pipeline {
                     }
                     steps {
                         sh '''
-                        netlify --version
-                        echo "Deploying to production Site ID: $NETLIFY_SITE_ID"
-                        netlify status
-                        netlify deploy --dir=build --prod
+                            netlify --version
+                            echo "Deploying to production Site ID: $NETLIFY_SITE_ID"
+                            netlify status
+                            netlify deploy --dir=build --prod
                             npx playwright test --reporter=html
                         '''
                     }
