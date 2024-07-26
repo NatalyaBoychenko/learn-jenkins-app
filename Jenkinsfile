@@ -53,7 +53,7 @@ pipeline {
                 '''
             }
         }
-
+/*
         stage('Build Docker image') {
             agent {
                 docker {
@@ -66,7 +66,7 @@ pipeline {
                 sh 'docker buid -t myjenkinsapp'
             }
         }
-
+*/
         stage('AWS') {
             agent {
                 docker {
