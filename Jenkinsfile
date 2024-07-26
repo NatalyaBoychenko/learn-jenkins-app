@@ -78,13 +78,12 @@ pipeline {
                     steps {
                         sh '''
                             serve -s build &
-                            sleep 40
-                            npx playwright test --reporter=html
+                            sleep 10
+                            npx playwright test  --reporter=html
                         '''
                     }
                     post {
                     always {
-                        junit 'jest-results/junit.xml'
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright E2E', reportTitles: '', useWrapperFileDirectly: true])
                     }
                     }
